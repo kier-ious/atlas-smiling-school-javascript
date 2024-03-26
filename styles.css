@@ -186,8 +186,7 @@
   }
 }
 
-/* Quotes Section  */
-
+/* Quotes Section */
 .loader {
   border: 10px solid #f3f3f3;
   border-top: 10px solid #C271FF;
@@ -214,10 +213,6 @@
   margin-left: 10px;
 }
 
-.quote-text {
-  padding-left: 53px;
-}
-
 .quotes .row [class*="col"] {
   padding-left: 0;
   padding-right: 0;
@@ -232,6 +227,7 @@
 .quote-text h4 {
   font-size: 22px;
 }
+
 .quote-text span {
   font-style: italic;
   font-size: 22px;
@@ -246,7 +242,7 @@
   width: 30px;
 }
 
-.quotes.arrows {
+.quotes .arrows {
   width: 100%;
 }
 
@@ -261,8 +257,10 @@
 .quote-text {
   max-width: 730px;
   margin: 0 auto;
+  padding-left: 53px;
 }
 
+/* Media Queries */
 @media screen and (max-width: 991px) {
   .quotes .carousel-item img {
     margin-left: 80px;
@@ -270,20 +268,23 @@
   .quote-text {
     padding-left: 43px;
   }
-
 }
 
 @media screen and (max-width: 767px) {
-  .quotes .carousel-item img {
-    margin-left: 40px;
-  }
-  .quote-text {
-    max-width: 370px;
-    margin: 0 auto;
+  .arrow-left,
+  .arrow-right {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
   }
 }
 
 @media screen and (max-width: 575px) {
+  .arrow-left,
+  .arrow-right {
+    width: 100%;
+    text-align: center;
+  }
   :root {
     --arrow-move-y: 40%;
     --arrow-move-x: 13px;
@@ -315,6 +316,7 @@
     max-width: 346px;
   }
 }
+
 
 /* POPULAR SECTION  */
 
