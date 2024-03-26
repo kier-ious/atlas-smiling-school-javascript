@@ -41,6 +41,8 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+
+
   </head>
   <body class="body">
     <header class="header">
@@ -170,7 +172,7 @@
         function hideLoader() {
           $(".loader").hide();
         }
-        function fetchQuotes() {
+        function fetchCarouselData() {
           $.ajax({
             url: "https://smileschool-api.hbtn.info/quotes",
             method: "GET",
@@ -205,6 +207,10 @@
             $(".carousel").slick({
               arrows: false
             });
+            
+            $(".carousel-control-prev, .carousel-control-next").click(function(e) {
+                e.preventDefault();
+              });
 
             $(".arrow-left").click(function() {
               $(".carousel").slick("slickPrev");
@@ -223,7 +229,7 @@
         });
       }
 
-      fetchQuotes();
+      fetchCarouselData();
     });
     </script>
   </body>

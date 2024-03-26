@@ -238,12 +238,16 @@
 }
 
 .quote-text-small {
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 .carousel-control-prev img,
 .carousel-control-next img {
   width: 30px;
+}
+
+.quotes.arrows {
+  width: 100%;
 }
 
 .quotes .carousel-control-prev.arrow-left {
@@ -254,6 +258,11 @@
   padding-left: var(--quotes-arrows-pad);
 }
 
+.quote-text {
+  max-width: 730px;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 991px) {
   .quotes .carousel-item img {
     margin-left: 80px;
@@ -261,11 +270,16 @@
   .quote-text {
     padding-left: 43px;
   }
+
 }
 
 @media screen and (max-width: 767px) {
   .quotes .carousel-item img {
     margin-left: 40px;
+  }
+  .quote-text {
+    max-width: 370px;
+    margin: 0 auto;
   }
 }
 
@@ -298,6 +312,7 @@
   .quote-text {
     padding: 0px;
     padding-top: 24px;
+    max-width: 346px;
   }
 }
 
