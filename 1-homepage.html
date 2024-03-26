@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>holberton-smiling</title>
+    <title>atlas-smiling</title>
     <!-- Custom and Font Styles  -->
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="font-style.css" />
@@ -138,108 +138,93 @@
     <main class="main">
       <section class="quotes section d-flex align-items-center">
         <div class="container">
-          <div
-            id="carouselExampleControls"
-            class="carousel slide"
-            data-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row mx-auto align-items-center">
-                  <div class="col-12 col-sm-2 col-lg-2 offset-lg-1 text-center">
-                    <img
-                      src="images/profile_5.jpg"
-                      class="d-block align-self-center"
-                      alt="Carousel Pic 1"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-7 offset-sm-2 col-lg-9 offset-lg-0">
-                    <div class="quote-text">
-                      <p class="text-white">
-                        « Those tutorials are concise and go straight to the
-                        point. I can’t think of a better place to learn smiling.
-                        And it’s so fun!
-                      </p>
-                      <h4 class="text-white font-weight-bold">Person Name</h4>
-                      <span class="text-white">weather presenter</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row mx-auto align-items-center">
-                  <div class="col-12 col-sm-2 col-lg-2 offset-lg-1 text-center">
-                    <img
-                      src="images/profile_5.jpg"
-                      class="d-block align-self-center"
-                      alt="Carousel Pic 1"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-7 offset-sm-2 col-lg-9 offset-lg-0">
-                    <div class="quote-text">
-                      <p class="text-white">
-                        « Those tutorials are concise and go straight to the
-                        point. I can’t think of a better place to learn smiling.
-                        And it’s so fun!
-                      </p>
-                      <h4 class="text-white font-weight-bold">Person Name</h4>
-                      <span class="text-white">weather presenter</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row mx-auto align-items-center">
-                  <div class="col-12 col-sm-2 col-lg-2 offset-lg-1 text-center">
-                    <img
-                      src="images/profile_5.jpg"
-                      class="d-block align-self-center"
-                      alt="Carousel Pic 1"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-7 offset-sm-2 col-lg-9 offset-lg-0">
-                    <div class="quote-text">
-                      <p class="text-white">
-                        « Those tutorials are concise and go straight to the
-                        point. I can’t think of a better place to learn smiling.
-                        And it’s so fun!
-                      </p>
-                      <h4 class="text-white font-weight-bold">Person Name</h4>
-                      <span class="text-white">weather presenter</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a
-              class="carousel-control-prev arrow-left"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="prev"
-            >
-              <img
-                src="images/arrow_white_left.png"
-                alt="Quote Previous"
-                aria-hidden="true"
-              />
-              <span class="sr-only">Previous</span>
-            </a>
-            <a
-              class="carousel-control-next arrow-right"
-              href="#carouselExampleControls"
-              role="button"
-              data-slide="next"
-            >
-              <img
-                src="images/arrow_white_right.png"
-                alt="Quote Next"
-                aria-hidden="true"
-              />
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+            <div class="loader"></div>
+            <div class="col-12 carousel"></div>
+        </div>
+        <div class="arrows row zindex-5 position-relative">
+          <a class="col-1 carousel-control-prev arrow-left" href="#" role="button">
+            <img src="images/arrow_white_left.png" alt="Prev Button" aria-hidden="true" />
+            <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="col-1  offset-10 carousel-control-next arrow-right" href="#" role="button">
+            <img src="images/arrow_white_right.png" alt="Next Button" aria-hidden="true" />
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </section>
     </main>
+    <!-- Scripts for JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+        <!-- Slinks -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+    <script>
+
+      $(document).ready(function() {
+        function showLoader() {
+          $(".loader").show();
+        }
+        function hideLoader() {
+          $(".loader").hide();
+        }
+        function fetchQuotes() {
+          $.ajax({
+            url: "https://smileschool-api.hbtn.info/quotes",
+            method: "GET",
+            beforeSend: function() {
+              showLoader();
+            },
+            success: function(data) {
+              hideLoader();
+
+              var carouselHtml = "";
+
+              $.each(data, function(index, item) {
+                carouselHtml += `
+                <div class="carousel-item zindex-1">
+                  <div class="row mx-auto align-items-center">
+                    <div class="">
+                      <img src="${item.pic_url}" class="d-block align-self-center" alt="Carousel Pic ${index + 1}" />
+                    </div>
+                    <div class="">
+                      <div class="quote-text">
+                        <p class="text-white text-wrap">${item.text}</p>
+                        <h4 class="text-white font-weight-bold">${item.name}</h4>
+                        <span class="text-white">${item.title}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            });
+
+            $(".carousel").html(carouselHtml);
+            $(".carousel").slick({
+              arrows: false
+            });
+
+            $(".arrow-left").click(function() {
+              $(".carousel").slick("slickPrev");
+            });
+
+            $(".arrow-right").click(function() {
+              $(".carousel").slick("slickNext");
+            });
+
+            $(".carousel").show();
+          },
+          error: function() {
+            hideLoader();
+            console.log("Error getting API data");
+          }
+        });
+      }
+
+      fetchQuotes();
+    });
+    </script>
   </body>
 </html>
