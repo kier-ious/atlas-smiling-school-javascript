@@ -187,6 +187,11 @@
 }
 
 /* Quotes Section */
+
+#quotesCarousel {
+  position: relative;
+}
+
 .loader {
   border: 10px solid #f3f3f3;
   border-top: 10px solid #C271FF;
@@ -320,6 +325,7 @@
 
 /* POPULAR SECTION  */
 
+
 .popular {
   height: auto;
   background-color: var(--color-white);
@@ -366,6 +372,27 @@
 
 .popular .carousel-control-next.arrow-right {
   right: var(--popular-arrows-x);
+}
+
+.star-rating {
+  display: flex;
+  align-items: flex-start
+}
+
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.play-overlay img {
+  align-self: auto;
+  /* width: 64px; */
+  height: auto;
 }
 
 @media screen and (max-width: 1280px) {
