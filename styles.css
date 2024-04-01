@@ -186,42 +186,23 @@
   }
 }
 
+
 /* Quotes Section */
-
-#quotesCarousel {
-  position: relative;
-}
-
-.loader {
-  border: 10px solid #f3f3f3;
-  border-top: 10px solid #C271FF;
-  
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: spin 2s linear infinite;
-  margin: auto;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 .quotes {
   height: 392px;
   background-color: var(--main-color);
+  position: relative;
+}
+
+.carousel {
+  position: relative;
 }
 
 .quotes .carousel-item img {
   width: 160px;
   border-radius: 75px;
   margin-left: 10px;
-}
-
-.quotes .row [class*="col"] {
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .quote-text p {
@@ -233,7 +214,6 @@
 .quote-text h4 {
   font-size: 22px;
 }
-
 .quote-text span {
   font-style: italic;
   font-size: 22px;
@@ -243,6 +223,23 @@
   font-size: 14px;
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+  display: block !important;
+  position:  absolute !important;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+}
+
+.carousel-control-prev {
+  left: 0;
+}
+
+.carousel-control-next {
+  right: 0;
+}
+
 .carousel-control-prev img,
 .carousel-control-next img {
   width: 30px;
@@ -250,6 +247,21 @@
 
 .quotes .arrows {
   width: 100%;
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #C271FF;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .quotes .carousel-control-prev.arrow-left {
@@ -268,9 +280,6 @@
 
 /* Media Queries */
 @media screen and (max-width: 991px) {
-  .quotes .carousel-item img {
-    margin-left: 80px;
-  }
   .quote-text {
     padding-left: 43px;
   }
@@ -286,15 +295,17 @@
 }
 
 @media screen and (max-width: 575px) {
+  :root {
+    --arrow-move-y: 40%;
+    --arrow-move-x: 13px;
+  }
+
   .arrow-left,
   .arrow-right {
     width: 100%;
     text-align: center;
   }
-  :root {
-    --arrow-move-y: 40%;
-    --arrow-move-x: 13px;
-  }
+
   .quotes {
     height: auto;
   }
@@ -317,12 +328,11 @@
   }
 
   .quote-text {
-    padding: 0px;
+    padding: 0;
     padding-top: 24px;
     max-width: 346px;
   }
 }
-
 
 /* POPULAR SECTION  */
 

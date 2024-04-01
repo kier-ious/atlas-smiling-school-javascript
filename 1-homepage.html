@@ -143,25 +143,18 @@
     <!-- QUOTES SECTION -->
 
     <main class="main">
-      <section class="quotes section d-flex align-items-center">
+      <section class="quotes section d-flex align-items-center justify-content-center">
         <div class="container">
-          <div class="row">
-            <div class="col-1 arrow-left">
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <img src="images/arrow_white_left.png" alt="Prev Button" aria-hidden="true" />
+          <div class="loader"></div>
+            <div class="col-12">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner" id="carousel-items"></div>
+              <a class="carousel-control-prev arrow-left" href="#carouselExampleControls" role="button" data-slide="prev">
+                <img src="images/arrow_white_left.png" alt="Quote Previous" aria-hidden="true" />
                 <span class="sr-only">Previous</span>
               </a>
-            </div>
-            <div class="col-10">
-              <div class="loader"></div>
-              <div id="quotesCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                </div>
-              </div>
-            </div>
-              <div class="col-1 arrow-right">
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <img src="images/arrow_white_right.png" alt="Next Button" aria-hidden="true" />
+              <a class="carousel-control-next arrow-right" href="#carouselExampleControls" role="button" data-slide="next">
+                <img src="images/arrow_white_right.png" alt="Quote Next" aria-hidden="true" />
                 <span class="sr-only">Next</span>
               </a>
             </div>
