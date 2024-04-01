@@ -158,7 +158,99 @@ $(document).ready(function() {
     starHtml += "</div>";
     return starHtml;
   };
-
-
   fetchPopularData();
+
+
+// Latest Videos
+function fetchLatestVideosData() {
+  $.ajax({
+    url: "https://smileschool-api.hbtn.info/latest-videos",
+    method: "GET",
+    beforeSend: function() {
+      $(".loader").show();
+    },
+    success: function(data) {
+      $(".loader").hide();
+      var carouselHtml = "";
+
+      const responseData = data.concat(data);
+      $.each(responseData, function(index, item) {
+        console.log(item)
+        carouselHtml += `
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center justify-content-md-end justify-content-lg-center zindex-1">
+          <div class="card position-relative">
+            <img src="${item.thumb_url}" class="card-img-top" alt="Video thumbnail">
+            <div class="card-img-overlay text-center">
+              <img src="images/play.png" alt="Play" width="64px" class="align-self-center play-overlay" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">${item.title}</h5>
+              <p class="card-text text-muted">${item['sub-title']}</p>
+              <div class="creator d-flex align-items-center">
+                <img src="${item.author_pic_url}" alt="Creator of Video" width="30px" class="rounded-circle">
+                <h6 class="pl-3 m-0 main-color">${item.author}</h6>
+              </div>
+              <div class="info pt-3 d-flex justify-content-between">
+                <div class="star-rating">
+                  ${generateStarRating(item.star)}
+                </div>
+                <span class="main-color">${item.duration}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      });
+
+      $("#latestCarousel").html(carouselHtml);
+      $(".slick-carousel-latest-videos").slick({
+        arrows: false,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 576,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+      $(".arrow-left-latest-videos, .arrow-right-latest-videos").click(function(e) {
+        e.preventDefault();
+      });
+
+      $(".slick-prev-latest-videos").click(function() {
+        $(".slick-carousel-latest-videos").slick("slickPrev");
+      });
+
+      $(".slick-next-latest-videos").click(function() {
+        $(".slick-carousel-latest-videos").slick("slickNext");
+      });
+    },
+
+    error: function() {
+      $(".loader").hide();
+      console.log("Error getting API data");
+    }
+  });
+}
+
+  function generateStarRating(stars) {
+    var starHtml = "<div class='star-rating'>";
+    for (var i = 0; i < stars; i++) {
+      starHtml += `<img src="images/star_on.png" alt="star on" width="15px">`;
+    }
+    for (var j = stars; j < 5; j++) {
+      starHtml += `<img src="images/star_off.png" alt="star off" width="15px">`;
+    }
+    starHtml += "</div>";
+    return starHtml;
+  };
+  fetchLatestVideosData();
 });

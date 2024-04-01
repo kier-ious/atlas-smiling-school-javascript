@@ -345,7 +345,7 @@
   }
 }
 
-/* POPULAR SECTION  */
+/* POPULAR/ Latest video SECTION  */
 
 .popular {
   height: auto;
@@ -436,6 +436,40 @@
   display: flex;
   align-items: flex-start
 }
+
+    .slick-carousel-latest-videos {
+      height: auto;
+      background-color: var(--color-white);
+    }
+
+    .slick-prev-latest-video,
+    .slick-next-latest-video {
+      width: 50px;
+      height: 60px;
+      z-index: 1;
+      opacity: var(--opacity-value, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .slick-prev-latest-videos {
+      left: var(--popular-arrows-x);
+    }
+
+    .slick-next-latest-videos {
+      right: var(--popular-arrows-x);
+    }
+
+    .arrow-left-latest-videos,
+    .arrow-right-latest-videos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
 @media screen and (max-width: 1280px) {
   :root {
