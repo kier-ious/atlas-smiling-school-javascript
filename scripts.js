@@ -253,4 +253,100 @@ function fetchLatestVideosData() {
     return starHtml;
   };
   fetchLatestVideosData();
+
+
+//////////////  Video Cards / Courses  /////////////////
+function fetchCoursesData() {
+  $.ajax({
+    url: "https://smileschool-api.hbtn.info/courses",
+    method: "GET",
+    data: {
+      q: $("#KEYWORDS").val(),
+      topic: $("#TOPICS").val(),
+      sort: $("#SORT_BY").val()
+    },
+
+    success: function(data) {
+      populateDropdowns(data);
+      renderVideoCards(data.courses);
+    },
+    error: function() {
+      $(".loader").hide(); // Hide loader in case of error
+      console.log("Error fetching courses data");
+    }
+  });
+}
+
+// Function to populate dropdowns with data from API response
+function populateDropdowns(data) {
+  // Populate topics dropdown
+  var topicsDropdown = $("#TOPICS");
+  topicsDropdown.empty(); // Clear existing options
+  $.each(data.topics, function(index, topic) {
+    topicsDropdown.append($("<option></option>").attr("value", topic).text(topic));
+  });
+
+  // Populate sort by dropdown
+  var sortByDropdown = $("#SORT_BY");
+  sortByDropdown.empty(); // Clear existing options
+  $.each(data.sorts, function(index, sortOption) {
+    sortByDropdown.append($("<option></option>").attr("value", sortOption).text(sortOption));
+  });
+}
+
+// Function to render video cards based on courses data
+function renderVideoCards(courses) {
+  var videoCardsContainer = $("#videoCardsRow");
+  videoCardsContainer.empty(); // Clear existing video cards
+
+  // Iterate over courses and generate HTML for each video card
+  $.each(courses, function(index, course) {
+    // Generate HTML for video card
+    var videoCardHtml = `
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card">
+          <img src="${course.thumb_url}" class="card-img-top" alt="Video thumbnail">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold">${course.title}</h5>
+            <p class="card-text">${course['sub-title']}</p>
+            <div class="creator d-flex align-items-center">
+              <img src="${course.author_pic_url}" alt="Author" width="30px" class="rounded-circle">
+              <h6 class="pl-3 m-0 main-color">${course.author}</h6>
+            </div>
+            <div class="info pt-3 d-flex justify-content-between">
+              <div class="star-rating">
+                ${generateStarRating(course.star)}
+              </div>
+              <span class="main-color">${course.duration}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Append video card HTML to container
+    videoCardsContainer.append(videoCardHtml);
+  });
+}
+
+// Function to generate star rating HTML dynamically
+function generateStarRating(stars) {
+  var starHtml = "<div class='star-rating'>";
+  for (var i = 0; i < stars; i++) {
+    starHtml += `<img src="images/star_on.png" alt="star on" width="15px">`;
+  }
+  for (var j = stars; j < 5; j++) {
+    starHtml += `<img src="images/star_off.png" alt="star off" width="15px">`;
+  }
+  starHtml += "</div>";
+  return starHtml;
+}
+
+// Event listeners for triggering API request
+$("#KEYWORDS, #TOPICS, #SORT_BY").change(function() {
+  fetchCoursesData(); // Trigger API request when search value, topic, or sort option changes
+});
+
+// Initial API request to populate section
+fetchCoursesData();
 });
