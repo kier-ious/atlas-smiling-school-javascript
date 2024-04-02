@@ -42,6 +42,11 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+      <!-- Slinks -->
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+      <script src="scripts.js"></script>
   </head>
   <body class="body">
     <header class="header courses-header">
@@ -123,11 +128,11 @@
               aria-label="Default"
               aria-describedby="inputGroup-sizing-default"
               placeholder="Search by keywords"
-              id="KEYWORDS"
+              id="keywords"
             />
           </div>
         </div>
-        
+
         <!-- Topic Dropdown -->
         <div class="col-12 col-sm-6 col-lg-4 box2">
           <span class="text-white font-weight-bold drop-down-title">TOPIC</span>
@@ -141,8 +146,8 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span>All</span>
-              </a>
+              <span id="topic">&nbsp;</span>
+            </a>
               <div
                 id="topicDropdown"
                 class="dropdown-menu mt-0"
@@ -165,16 +170,28 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span>Most popular</span>
-              </a>
+              <span id="sort">&nbsp;</span>
+            </a>
               <div
                 class="dropdown-menu mt-0"
                 aria-labelledby="dropdownMenuLinkSort"
+                id="sort-dropdown"
               >
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Results section -->
+
+  <section class="section results">
+    <div class="container">
+      <div class="section-title">
+        <span class="text-muted video-count" id="results-count"></span>
+      </div>
+      <div class="row" id="results-items"></div>
     </div>
   </section>
 </main>
@@ -245,3 +262,5 @@
     </footer>
   </body>
 </html>
+
+
