@@ -70,6 +70,17 @@ $(document).ready(function() {
 
 
   /////////////////////  Popular Section  ////////////////////////
+  function generateStarRating(stars) {
+    var starHtml = "<div class='star-rating'>";
+    for (var i = 0; i < stars; i++) {
+      starHtml += `<img src="images/star_on.png" alt="star on" width="15px">`;
+    }
+    for (var j = stars; j < 5; j++) {
+      starHtml += `<img src="images/star_off.png" alt="star off" width="15px">`;
+    }
+    starHtml += "</div>";
+    return starHtml;
+  }
 
 
   function fetchPopularData() {
