@@ -82,7 +82,6 @@ $(document).ready(function() {
     return starHtml;
   }
 
-
   function fetchPopularData() {
     $.ajax({
       url: "https://smileschool-api.hbtn.info/popular-tutorials",
